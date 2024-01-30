@@ -1,0 +1,120 @@
+﻿@model IEnumerable<AdamsHospitalFrontEnd2.Models.AppointmentsVM>
+@{
+    ViewData["Title"] = "Appointments";
+}
+
+<div class="row mt-4 pt-5 min-vn-100"> 
+
+    <div class="col-sm-8 offset-md-2">  
+
+        <h1 style="color:white"> Appointments Dashboard </h1>
+
+        <table class="table"> 
+
+            <thead>
+
+                <tr>
+
+                    <th>
+
+                        @Html.DisplayNameFor(model => model.Title)
+
+                    </th>
+                    
+                    <th>
+
+                        @Html.DisplayNameFor(model => model.StartTime)
+
+                    </th>
+
+                    <th>
+
+                        @Html.DisplayNameFor(model => model.EndTime)
+
+                    </th>
+
+                    <th>
+
+                        @Html.DisplayNameFor(model => model.Location)
+
+                    </th>
+
+                    <th>
+
+                        @Html.DisplayNameFor(model => model.Description)
+
+                    </th> 
+
+                    <th>
+                        <a asp-action="GetById" class="btn btn-sm btn-success"> New AppointMent </a> 
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title) 
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartTime)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EndTime)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Location)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+
+                        <td>
+
+                            <form asp-action="DeleteUpsert" asp-route-id="@item.Id">
+
+                                <div class="btn-group btn-group-sm">
+
+                                    <a asp-action="Upsert" asp-route-id="@item.Id" class="btn btn-warning">
+                                        
+                                        <i class="fa-solid fa-pen-to-square"></i>
+
+                                    </a>
+
+                                    <a asp-action="CreateUpsert" asp-route-id="@item.Id" class="btn btn-primary">
+                                        
+                                        <i class="fa-solid fa-info"></i>
+                                      
+                                    </a>
+
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this record?')"> 
+                                     
+                                        <i class="far fa-trash-alt"></i>
+
+                                    </button>
+
+                                </div>
+
+                            </form>
+
+                        </td>
+
+                    </tr>
+                } 
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
